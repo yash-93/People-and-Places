@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Card from "../../shared/components/UIElements/Card";
-import Button from "../../shared/components/FormElements/Button";
-import Modal from "../../shared/components/UIElements/Modal";
-import Map from "../../shared/components/UIElements/Map";
-import "./PlaceItem.css";
+import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
+import Modal from '../../shared/components/UIElements/Modal';
+import Map from '../../shared/components/UIElements/Map';
+import './PlaceItem.css';
 
-const PlaceItem = (props) => {
+const PlaceItem = props => {
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -24,7 +24,7 @@ const PlaceItem = (props) => {
 
   const confirmDeleteHandler = () => {
     setShowConfirmModal(false);
-    console.log("DELETING...");
+    console.log('DELETING...');
   };
 
   return (
@@ -45,7 +45,7 @@ const PlaceItem = (props) => {
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
         header="Are you sure?"
-        footerClass="footer-item__modal-actions"
+        footerClass="place-item__modal-actions"
         footer={
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>
@@ -57,7 +57,10 @@ const PlaceItem = (props) => {
           </React.Fragment>
         }
       >
-        <p>Are you sure you want to delete this place?</p>
+        <p>
+          Do you want to proceed and delete this place? Please note that it
+          can't be undone thereafter.
+        </p>
       </Modal>
       <li className="place-item">
         <Card className="place-item__content">
