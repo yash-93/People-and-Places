@@ -74,7 +74,7 @@ const PlaceItem = (props) => {
               VIEW ON MAP
             </Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
-            <Button danger onClick={setShowConfirmModal}>
+            <Button danger onClick={showDeleteWarningHandler}>
               DELETE
             </Button>
           </div>
