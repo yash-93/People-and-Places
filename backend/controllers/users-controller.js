@@ -57,12 +57,19 @@ const signup = async (req, res, next) => {
   res.status(201).json({ user: createdUser });
 };
 
-const login = (req, res, next) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const identifiedUser = DUMMY_PLACES.find((u) => u.email === email);
-  if (!identifiedUser || identifiedUser.password !== password) {
-    throw new HttpError("Wrong Credentials.", 401);
+  let existingUser;
+  try {
+    existingUser = await User.findOne({ email: email });
+  } catch (err) {
+    return next(new HttpError("Log In failed, try again later"));
+  }
+
+  if (!existingUser || existingUser.password !== password) {
+    const error = new HttpError("Invalid Credentials, unable to login in", 401);
+    return next(error);
   }
 
   res.json({ message: "Logged in" });
