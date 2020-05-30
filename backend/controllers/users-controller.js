@@ -13,8 +13,16 @@ const DUMMY_PLACES = [
   },
 ];
 
-const getUsers = (req, res, next) => {
-  res.json({ users: DUMMY_PLACES });
+const getUsers = async (req, res, next) => {
+  let users;
+  // const users = await User.find({}, 'email name');
+  try {
+    users = await User.find({}, "--password");
+  } catch (err) {
+    return next(new HttpError("Fetching users failed, try again later", 500));
+  }
+
+  res.json({ users });
 };
 
 const signup = async (req, res, next) => {
