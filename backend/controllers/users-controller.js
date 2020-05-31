@@ -1,21 +1,11 @@
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
 const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
 
-const DUMMY_PLACES = [
-  {
-    id: "u1",
-    name: "Yashdeep Bachhas",
-    email: "yash@gmail.com",
-    password: "1397",
-  },
-];
-
 const getUsers = async (req, res, next) => {
   let users;
-  // const users = await User.find({}, 'email name');
   try {
     users = await User.find({}, "--password");
   } catch (err) {
