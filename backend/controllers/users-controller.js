@@ -40,8 +40,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZXomn4P8EXSe1QvO0P5jI_J7AHtOkXSPJJ2sX1QHwj8BgBUa8Sw&s",
+    image: req.file.path,
     password,
     places: [],
   });
